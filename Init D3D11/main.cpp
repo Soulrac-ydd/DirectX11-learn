@@ -10,29 +10,19 @@ const int Width = 800;	//window width
 const int Height = 600;	//window height
 
 //Functions//
-bool InitializeWindow(HINSTANCE hInstance,	//Initialize our window
-	int ShowWnd,
-	int width, int height,
-	bool windowed);
+bool InitializeWindow(HINSTANCE hInstance, int ShowWnd, int width, int height, bool windowed); //Initialize our window
 
 int messageloop();	//Main part of the program
 
-LRESULT CALLBACK WndProc(HWND hWnd,	//Windows callback procedure
-	UINT msg,
-	WPARAM wParam,
-	LPARAM lParam);
+LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam); //Windows callback procedure
 
-int WINAPI WinMain(HINSTANCE hInstance,	//Main windows function
-	HINSTANCE hPrevInstance,
-	LPSTR lpCmdLine,
-	int nShowCmd)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) //Main windows function
 {
 	//Initialize Window//
 	if (!InitializeWindow(hInstance, nShowCmd, Width, Height, true))
 	{
 		//If initialization failed, display an error message
-		MessageBox(0, L"Window Initialization - Failed",
-			L"Error", MB_OK);
+		MessageBox(0, L"Window Initialization - Failed", L"Error", MB_OK);
 		return 0;
 	}
 
@@ -41,10 +31,7 @@ int WINAPI WinMain(HINSTANCE hInstance,	//Main windows function
 	return 0;
 }
 
-bool InitializeWindow(HINSTANCE hInstance,	//Initialize our window
-	int ShowWnd,
-	int width, int height,
-	bool windowed)
+bool InitializeWindow(HINSTANCE hInstance, int ShowWnd, int width, int height, bool windowed) //Initialize our window
 {
 	//Start creating the window//
 
@@ -66,8 +53,7 @@ bool InitializeWindow(HINSTANCE hInstance,	//Initialize our window
 	if (!RegisterClassEx(&wc))	//Register our windows class
 	{
 		//if registration failed, display error
-		MessageBox(NULL, L"Error registering class",
-			L"Error", MB_OK | MB_ICONERROR);
+		MessageBox(NULL, L"Error registering class", L"Error", MB_OK | MB_ICONERROR);
 		return 1;
 	}
 
@@ -88,8 +74,7 @@ bool InitializeWindow(HINSTANCE hInstance,	//Initialize our window
 	if (!hwnd)	//Make sure our window has been created
 	{
 		//If not, display error
-		MessageBox(NULL, L"Error creating window",
-			L"Error", MB_OK | MB_ICONERROR);
+		MessageBox(NULL, L"Error creating window", L"Error", MB_OK | MB_ICONERROR);
 		return 1;
 	}
 
@@ -117,11 +102,11 @@ int messageloop() {	//The message loop
 			//Send the message to default windows procedure
 			DispatchMessage(&msg);
 		}
-
-		else {	//Otherewise, keep the flow going
+		//Otherewise, keep the flow going
+		else
+		{
 
 		}
-
 
 	}
 
@@ -129,20 +114,15 @@ int messageloop() {	//The message loop
 
 }
 
-LRESULT CALLBACK WndProc(HWND hwnd,	//Default windows procedure
-	UINT msg,
-	WPARAM wParam,
-	LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) //Default windows procedure
 {
 	switch (msg)	//Check message
 	{
-
-	case WM_KEYDOWN:	//For a key down
+	case WM_KEYDOWN:	//For a key down 
 		//if escape key was pressed, display popup box
-		if (wParam == VK_ESCAPE) {
-			if (MessageBox(0, L"Are you sure you want to exit?",
-				L"Really?", MB_YESNO | MB_ICONQUESTION) == IDYES)
-
+		if (wParam == VK_ESCAPE)
+		{
+			if (MessageBox(0, L"Are you sure you want to exit?", L"Really?", MB_YESNO | MB_ICONQUESTION) == IDYES)
 				//Release the windows allocated memory  
 				DestroyWindow(hwnd);
 		}
@@ -153,8 +133,5 @@ LRESULT CALLBACK WndProc(HWND hwnd,	//Default windows procedure
 		return 0;
 	}
 	//return the message for windows to handle it
-	return DefWindowProc(hwnd,
-		msg,
-		wParam,
-		lParam);
+	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
