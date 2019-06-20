@@ -1,4 +1,4 @@
-﻿  d3dApp.cpp
+﻿  main.cpp
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: “DXGI_STATUS_OCCLUDED”: 宏重定义
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\winerror.h(55460): note: 参见“DXGI_STATUS_OCCLUDED”的前一个定义
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: “DXGI_STATUS_CLIPPED”: 宏重定义
@@ -55,4 +55,42 @@ c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(608): w
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\winerror.h(55899): note: 参见“D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS”的前一个定义
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d10.h(609): warning C4005: “D3D10_ERROR_FILE_NOT_FOUND”: 宏重定义
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\winerror.h(55908): note: 参见“D3D10_ERROR_FILE_NOT_FOUND”的前一个定义
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2662): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2663): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2664): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2665): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2666): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2667): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2668): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2689): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2690): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2691): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2694): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2695): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2698): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2702): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2712): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2713): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2715): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2716): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2717): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2727): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2728): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2729): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2730): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2731): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2732): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2742): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2743): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamath.h(2754): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.inl(2254): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.inl(4523): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.inl(4577): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.inl(4639): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.inl(4707): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.inl(4770): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.inl(4832): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathvector.inl(1269): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(518): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(519): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
   Init D3D11.vcxproj -> E:\MyC++\DirectX11\DirectX11-learn\Dx11 Learn\Debug\Init D3D11.exe
