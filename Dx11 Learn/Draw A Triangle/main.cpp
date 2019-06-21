@@ -1,6 +1,4 @@
 
-///////////////**************new**************////////////////////
-
 //Include and link appropriate libraries and headers//
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dx11.lib")
@@ -9,49 +7,62 @@
 #include <windows.h>
 #include <d3d11.h>
 #include <d3dx11.h>
-#include <d3dx10.h>
+#include <D3DX10.h>
 #include <xnamath.h>
 
-//Global Declarations//
+//Global Declarations - Interfaces//
 IDXGISwapChain* SwapChain;
 ID3D11Device* d3d11Device;
 ID3D11DeviceContext* d3d11DevCon;
 ID3D11RenderTargetView* renderTargetView;
 
-float red = 0.0f;
-float green = 0.0f;
-float blue = 0.0f;
-int colormodr = 1;
-int colormodg = 1;
-int colormodb = 1;
-
+///////////////**************new**************////////////////////
+ID3D11Buffer* triangleVertBuffer;
+ID3D11VertexShader* VS;
+ID3D11PixelShader* PS;
+ID3D10Blob* VS_Buffer;
+ID3D10Blob* PS_Buffer;
+ID3D11InputLayout* vertLayout;
 ///////////////**************new**************////////////////////
 
+//Global Declarations - Others//
 LPCTSTR WndClassName = L"firstwindow";
 HWND hwnd = NULL;
+HRESULT hr;
 
-const int Width = 400;
-const int Height = 400;
-
-///////////////**************new**************////////////////////
+const int Width = 300;
+const int Height = 300;
 
 //Function Prototypes//
-bool InitializeDirect3d11App(HINSTANCE hInstance); //初始化direct3d
-void ReleaseObjects(); //释放不需要防止内存泄漏的对象
-bool InitScene(); //初始化  设置场景
-void UpdateScene(); //更新场景  用于在每帧的基础上更改场景
-void DrawScene(); //绘制场景  用于将场景绘制到屏幕，并且每帧也更新
-
-///////////////**************new**************////////////////////
+bool InitializeDirect3d11App(HINSTANCE hInstance);
+void CleanUp();
+bool InitScene();
+void UpdateScene();
+void DrawScene();
 
 bool InitializeWindow(HINSTANCE hInstance, int ShowWnd, int width, int height, bool windowed);
-
 int messageloop();
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+///////////////**************new**************////////////////////
+//Vertex Structure and Vertex Layout (Input Layout)//
+struct Vertex	//Overloaded Vertex Structure
+{
+	Vertex() {}
+	Vertex(float x, float y, float z) : pos(x, y, z) {}
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)	//Main windows function
+	XMFLOAT3 pos;
+};
+
+D3D11_INPUT_ELEMENT_DESC layout[] =
+{
+	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+};
+UINT numElements = ARRAYSIZE(layout);
+///////////////**************new**************////////////////////
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)//Main windows function
 {
 
 	if (!InitializeWindow(hInstance, nShowCmd, Width, Height, true))
@@ -59,8 +70,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		MessageBox(0, L"Window Initialization - Failed", L"Error", MB_OK);
 		return 0;
 	}
-
-	///////////////**************new**************////////////////////
 
 	if (!InitializeDirect3d11App(hInstance))	//Initialize Direct3D
 	{
@@ -76,17 +85,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	messageloop();
 
-	ReleaseObjects();
-
-	///////////////**************new**************////////////////////
+	CleanUp();
 
 	return 0;
 }
 
 bool InitializeWindow(HINSTANCE hInstance, int ShowWnd, int width, int height, bool windowed)
 {
-	typedef struct _WNDCLASS
-	{
+	typedef struct _WNDCLASS {
 		UINT cbSize;
 		UINT style;
 		WNDPROC lpfnWndProc;
@@ -124,7 +130,7 @@ bool InitializeWindow(HINSTANCE hInstance, int ShowWnd, int width, int height, b
 	hwnd = CreateWindowEx(
 		NULL,
 		WndClassName,
-		L"Window Title",
+		L"Lesson 4 - Begin Drawing",
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		width, height,
@@ -146,44 +152,33 @@ bool InitializeWindow(HINSTANCE hInstance, int ShowWnd, int width, int height, b
 	return true;
 }
 
-///////////////**************new**************////////////////////
-
 bool InitializeDirect3d11App(HINSTANCE hInstance)
 {
-	HRESULT hr; //创建名为hr的HRESULT对象，用于错误检查。此处没有包含错误检查，以保持代码更清晰和浓缩。
-
 	//Describe our Buffer
 	DXGI_MODE_DESC bufferDesc;
 
 	ZeroMemory(&bufferDesc, sizeof(DXGI_MODE_DESC));
 
-	bufferDesc.Width = Width; //分辨率的宽度
-	bufferDesc.Height = Height; //分辨率的高度
-	//RefreshRate是DXGI_RATIONAL类型，用赫兹描述刷新率，如下为60/1，即60Hz。
-	bufferDesc.RefreshRate.Numerator = 60; //分子
-	bufferDesc.RefreshRate.Denominator = 1; // 分母
-	bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM; //显示的格式为一个32位无符号整数，每个都取8位，红、绿、蓝和Alpha。
-	//ScanlineOrdering是DXGI_MODE_SCANLINE_ORDER枚举类型，描述光栅化渲染器渲染到表面上的方式。
-	//由于我们使用双缓冲，通常看不到，因此我们可以将其设置为DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED，这意味着渲染在曲面上的顺序无关紧要。
+	bufferDesc.Width = Width;
+	bufferDesc.Height = Height;
+	bufferDesc.RefreshRate.Numerator = 60;
+	bufferDesc.RefreshRate.Denominator = 1;
+	bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	bufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED; //Scaling是DXGI_MODE_SCALING类型，表示图像如何拉伸以适应显示器的分辨率。
+	bufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 
 	//Describe our SwapChain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 
 	ZeroMemory(&swapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
 
-	swapChainDesc.BufferDesc = bufferDesc; //这是一个DXGI_MODE_DESC结构，它描述了后台缓冲区。我们将把刚刚填写的bufferDesc对象放在这里。
-	//多重采样 用于“平滑”线条和边缘的紊乱（抗锯齿）
+	swapChainDesc.BufferDesc = bufferDesc;
 	swapChainDesc.SampleDesc.Count = 1;
 	swapChainDesc.SampleDesc.Quality = 0;
-	//BufferUsage是DXGI_USAGE枚举类型，描述cpu对后台缓冲区表面的访问。我们指定DXGI_USAGE_RENDER_TARGET_OUTPUT，因为我们将渲染它。
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	//使用的后台缓冲区的数量，设置为1表示双缓冲，2表示三缓冲，以此类推。
 	swapChainDesc.BufferCount = 1;
-	swapChainDesc.OutputWindow = hwnd; //输出到窗口的句柄
-	swapChainDesc.Windowed = TRUE; //TRUE or FALSE，取决于我们是否需要窗口或全屏。对于窗口设置为TRUE，对于全屏幕设置为FALSE。
-	//SwapEffect是DXGI_SWAP_EFFECT枚举类型，描述了显示驱动程序在将前缓冲区交换到后缓冲区后应该对前缓冲区执行的操作。我们设置DXGI_SWAP_EFFECT_DISCARD让显示驱动程序决定最有效的方法是什么
+	swapChainDesc.OutputWindow = hwnd;
+	swapChainDesc.Windowed = TRUE;
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
 
@@ -205,48 +200,113 @@ bool InitializeDirect3d11App(HINSTANCE hInstance)
 	return true;
 }
 
-void ReleaseObjects()
+void CleanUp()
 {
 	//Release the COM Objects we created
 	SwapChain->Release();
 	d3d11Device->Release();
 	d3d11DevCon->Release();
+	renderTargetView->Release();
+	///////////////**************new**************////////////////////
+	triangleVertBuffer->Release();
+	VS->Release();
+	PS->Release();
+	VS_Buffer->Release();
+	PS_Buffer->Release();
+	vertLayout->Release();
+	///////////////**************new**************////////////////////
 }
+
+///////////////**************new**************////////////////////
 bool InitScene()
 {
+	//Compile Shaders from shader file
+	hr = D3DX11CompileFromFile(L"Effects.fx", 0, 0, "VS", "vs_4_0", 0, 0, 0, &VS_Buffer, 0, 0);
+	hr = D3DX11CompileFromFile(L"Effects.fx", 0, 0, "PS", "ps_4_0", 0, 0, 0, &PS_Buffer, 0, 0);
+
+	//Create the Shader Objects
+	hr = d3d11Device->CreateVertexShader(VS_Buffer->GetBufferPointer(), VS_Buffer->GetBufferSize(), NULL, &VS);
+	hr = d3d11Device->CreatePixelShader(PS_Buffer->GetBufferPointer(), PS_Buffer->GetBufferSize(), NULL, &PS);
+
+	//Set Vertex and Pixel Shaders
+	d3d11DevCon->VSSetShader(VS, 0, 0);
+	d3d11DevCon->PSSetShader(PS, 0, 0);
+
+	//Create the vertex buffer
+	Vertex v[] =
+	{
+		Vertex(0.0f, 0.5f, 0.5f),
+		Vertex(0.5f, -0.5f, 0.5f),
+		Vertex(-0.5f, -0.5f, 0.5f),
+	};
+
+	D3D11_BUFFER_DESC vertexBufferDesc;
+	ZeroMemory(&vertexBufferDesc, sizeof(vertexBufferDesc));
+
+	vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	vertexBufferDesc.ByteWidth = sizeof(Vertex) * 3;
+	vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	vertexBufferDesc.CPUAccessFlags = 0;
+	vertexBufferDesc.MiscFlags = 0;
+
+	D3D11_SUBRESOURCE_DATA vertexBufferData;
+
+	ZeroMemory(&vertexBufferData, sizeof(vertexBufferData));
+	vertexBufferData.pSysMem = v;
+	hr = d3d11Device->CreateBuffer(&vertexBufferDesc, &vertexBufferData, &triangleVertBuffer);
+
+	//Set the vertex buffer
+	UINT stride = sizeof(Vertex);
+	UINT offset = 0;
+	d3d11DevCon->IASetVertexBuffers(0, 1, &triangleVertBuffer, &stride, &offset);
+
+	//Create the Input Layout
+	d3d11Device->CreateInputLayout(layout, numElements, VS_Buffer->GetBufferPointer(), VS_Buffer->GetBufferSize(), &vertLayout);
+
+	//Set the Input Layout
+	d3d11DevCon->IASetInputLayout(vertLayout);
+
+	//Set Primitive Topology
+	d3d11DevCon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	//Create the Viewport
+	D3D11_VIEWPORT viewport;
+	ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
+
+	viewport.TopLeftX = 0;
+	viewport.TopLeftY = 0;
+	viewport.Width = Width;
+	viewport.Height = Height;
+
+	//Set the Viewport
+	d3d11DevCon->RSSetViewports(1, &viewport);
 
 	return true;
 }
+///////////////**************new**************////////////////////
 
 void UpdateScene()
 {
-	//Update the colors of our scene
-	red += colormodr * 0.00005f;
-	green += colormodg * 0.00002f;
-	blue += colormodb * 0.00001f;
 
-	if (red >= 1.0f || red <= 0.0f)
-		colormodr *= -1;
-	if (green >= 1.0f || green <= 0.0f)
-		colormodg *= -1;
-	if (blue >= 1.0f || blue <= 0.0f)
-		colormodb *= -1;
 }
 
+///////////////**************new**************////////////////////
 void DrawScene()
 {
-	//Clear our backbuffer to the updated color
-	D3DXCOLOR bgColor(red, green, blue, 1.0f);
-
+	//Clear our backbuffer
+	float bgColor[4] = { (0.0f, 0.0f, 0.0f, 0.0f) };
 	d3d11DevCon->ClearRenderTargetView(renderTargetView, bgColor);
+
+	//Draw the triangle
+	d3d11DevCon->Draw(3, 0);
 
 	//Present the backbuffer to the screen
 	SwapChain->Present(0, 0);
 }
-
 ///////////////**************new**************////////////////////
 
-int messageloop() {
+int messageloop()
+{
 	MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
 	while (true)
@@ -266,14 +326,11 @@ int messageloop() {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		else {
-			///////////////**************new**************////////////////////
-						// run game code
-
+		else
+		{
+			// run game code            
 			UpdateScene();
 			DrawScene();
-
-			///////////////**************new**************////////////////////
 		}
 	}
 	return msg.wParam;
@@ -296,3 +353,4 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	}
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
+
