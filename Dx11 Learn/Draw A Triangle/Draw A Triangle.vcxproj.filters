@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Effects.fx">
-      <Filter>资源文件</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Effects.fx">
+      <Filter>源文件</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
