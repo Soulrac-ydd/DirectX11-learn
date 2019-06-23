@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Draw A Triangle", "Draw A T
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Color", "Color\Color.vcxproj", "{67E5CBAB-70C6-4BE2-877E-F5E2FFB478FE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Indices(Index Buffer)", "Indices(Index Buffer)\Indices(Index Buffer).vcxproj", "{EAAC264B-AD57-4354-B06D-CC1BF6389E05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{67E5CBAB-70C6-4BE2-877E-F5E2FFB478FE}.Release|x64.Build.0 = Release|x64
 		{67E5CBAB-70C6-4BE2-877E-F5E2FFB478FE}.Release|x86.ActiveCfg = Release|Win32
 		{67E5CBAB-70C6-4BE2-877E-F5E2FFB478FE}.Release|x86.Build.0 = Release|Win32
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Debug|x64.ActiveCfg = Debug|x64
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Debug|x64.Build.0 = Debug|x64
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Debug|x86.ActiveCfg = Debug|Win32
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Debug|x86.Build.0 = Debug|Win32
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Release|x64.ActiveCfg = Release|x64
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Release|x64.Build.0 = Release|x64
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Release|x86.ActiveCfg = Release|Win32
+		{EAAC264B-AD57-4354-B06D-CC1BF6389E05}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
