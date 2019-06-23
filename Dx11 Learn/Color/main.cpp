@@ -48,16 +48,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 struct Vertex	//Overloaded Vertex Structure
 {
 	Vertex() {}
-	Vertex(float x, float y, float z, float cr, float cg, float cb, float ca) : pos(x, y, z), color(cr, cg, cb, ca) {}
+	Vertex(float x, float y, float z, float cr0, float cg0, float cb0, float ca0, float cr1, float cg1, float cb1, float ca1)
+		: pos(x, y, z), color0(cr0, cg0, cb0, ca0), color1(cr1, cg1, cb1, ca1) {}
 
 	XMFLOAT3 pos;
-	XMFLOAT4 color;
+	XMFLOAT4 color0;
+	XMFLOAT4 color1;
 };
 
 D3D11_INPUT_ELEMENT_DESC layout[] =
 {
 	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "COLOR", 1, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 28, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 UINT numElements = ARRAYSIZE(layout);
 ///////////////**************new**************////////////////////
@@ -233,9 +236,9 @@ bool InitScene()
 	Vertex v[] =
 	{
 		///////////////**************new**************////////////////////
-		Vertex(0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f),
-		Vertex(0.5f, -0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f),
-		Vertex(-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f),
+		Vertex(0.0f, 0.5f, 0.5f, 0.4f, 0.6f, 0.1f, 1.0f, 0.8f, 0.2f, 0.3f, 1.0f),
+		Vertex(0.5f, -0.5f, 0.5f, 0.3f, 0.8f, 0.4f, 1.0f, 0.3f, 0.9f, 0.7f, 1.0f),
+		Vertex(-0.5f, -0.5f, 0.5f, 0.7f, 0.2f, 0.3f, 1.0f, 0.1f, 0.2f, 0.9f, 1.0f),
 		///////////////**************new**************////////////////////
 	};
 
