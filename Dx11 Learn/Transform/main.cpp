@@ -9,6 +9,7 @@
 #include <d3dx11.h>
 #include <d3dx10.h>
 #include <xnamath.h>
+#include <d3dcompiler.h>
 
 //Global Declarations - Interfaces//
 IDXGISwapChain* SwapChain;
@@ -288,8 +289,8 @@ void CleanUp()
 bool InitScene()
 {
 	//Compile Shaders from shader file
-	hr = D3DX11CompileFromFile(L"Effects.fx", 0, 0, "VS", "vs_4_0", 0, 0, 0, &VS_Buffer, 0, 0);
-	hr = D3DX11CompileFromFile(L"Effects.fx", 0, 0, "PS", "ps_4_0", 0, 0, 0, &PS_Buffer, 0, 0);
+	hr = D3DX11CompileFromFile(L"Effects.fx", 0, 0, "VS", "vs_4_0", D3DCOMPILE_DEBUG, 0, 0, &VS_Buffer, 0, 0);
+	hr = D3DX11CompileFromFile(L"Effects.fx", 0, 0, "PS", "ps_4_0", D3DCOMPILE_DEBUG, 0, 0, &PS_Buffer, 0, 0);
 
 	//Create the Shader Objects
 	hr = d3d11Device->CreateVertexShader(VS_Buffer->GetBufferPointer(), VS_Buffer->GetBufferSize(), NULL, &VS);
