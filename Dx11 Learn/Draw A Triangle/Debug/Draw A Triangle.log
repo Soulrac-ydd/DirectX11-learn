@@ -93,6 +93,4 @@ c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathvector.inl(1269): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(518): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(519): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
-e:\myc++\directx11\directx11-learn\dx11 learn\draw a triangle\main.cpp(410): warning C4838: 从“int”转换到“float”需要收缩转换
-e:\myc++\directx11\directx11-learn\dx11 learn\draw a triangle\main.cpp(410): warning C4244: “初始化”: 从“int”转换到“float”，可能丢失数据
   Draw A Triangle.vcxproj -> E:\MyC++\DirectX11\DirectX11-learn\Dx11 Learn\Debug\Draw A Triangle.exe
