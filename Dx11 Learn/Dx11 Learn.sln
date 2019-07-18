@@ -21,7 +21,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Transform", "Transform\Tran
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Render State", "Render State\Render State.vcxproj", "{2C824317-1FC2-4C8B-9F36-E66CB3EB7B5B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D3D11Textures", "D3D11Textures\D3D11Textures.vcxproj", "{2F95CCD9-2D86-4F3F-935B-56A450FE55DC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Textures", "Textures\Textures.vcxproj", "{2F95CCD9-2D86-4F3F-935B-56A450FE55DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

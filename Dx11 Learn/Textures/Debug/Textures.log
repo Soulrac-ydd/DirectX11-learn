@@ -1,4 +1,7 @@
-﻿  main.cpp
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see E:\MyC++\DirectX11\DirectX11-learn\Dx11 Learn\Debug\Effects.cso
+  main.cpp
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(12): warning C4005: “DXGI_STATUS_OCCLUDED”: 宏重定义
   c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\winerror.h(55460): note: 参见“DXGI_STATUS_OCCLUDED”的前一个定义
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\dxgitype.h(13): warning C4005: “DXGI_STATUS_CLIPPED”: 宏重定义
@@ -93,4 +96,4 @@ c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathvector.inl(1269): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(518): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(519): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
-  D3D11Textures.vcxproj -> E:\MyC++\DirectX11\DirectX11-learn\Dx11 Learn\Debug\D3D11Textures.exe
+  Textures.vcxproj -> E:\MyC++\DirectX11\DirectX11-learn\Dx11 Learn\Debug\Textures.exe
