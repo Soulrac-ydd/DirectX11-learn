@@ -93,4 +93,4 @@ c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathconvert.
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathvector.inl(1269): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(518): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
 c:\program files (x86)\microsoft directx sdk (june 2010)\include\xnamathmisc.inl(519): warning C4838: 从“unsigned int”转换到“INT”需要收缩转换
-  Textures.vcxproj -> E:\MyC++\DirectX11\DirectX11-learn\Dx11 Learn\Debug\Textures.exe
+  Blending.vcxproj -> E:\MyC++\DirectX11\DirectX11-learn\Dx11 Learn\Debug\Blending.exe
