@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Textures", "Textures\Textur
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Blending", "Blending\Blending.vcxproj", "{501AF1A4-C0ED-4293-842C-F592BD7F96D7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pixel Clipping", "Pixel Clipping\Pixel Clipping.vcxproj", "{28CC03A8-F793-4AB3-91C5-1112DCCDD683}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -169,6 +171,18 @@ Global
 		{501AF1A4-C0ED-4293-842C-F592BD7F96D7}.Release|x64.Build.0 = Release|x64
 		{501AF1A4-C0ED-4293-842C-F592BD7F96D7}.Release|x86.ActiveCfg = Release|Win32
 		{501AF1A4-C0ED-4293-842C-F592BD7F96D7}.Release|x86.Build.0 = Release|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Debug|ARM.ActiveCfg = Debug|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Debug|ARM64.ActiveCfg = Debug|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Debug|x64.ActiveCfg = Debug|x64
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Debug|x64.Build.0 = Debug|x64
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Debug|x86.ActiveCfg = Debug|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Debug|x86.Build.0 = Debug|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Release|ARM.ActiveCfg = Release|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Release|ARM64.ActiveCfg = Release|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Release|x64.ActiveCfg = Release|x64
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Release|x64.Build.0 = Release|x64
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Release|x86.ActiveCfg = Release|Win32
+		{28CC03A8-F793-4AB3-91C5-1112DCCDD683}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
