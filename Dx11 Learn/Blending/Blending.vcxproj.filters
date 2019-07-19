@@ -24,15 +24,4 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="nami.jpg">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="testImage3.jpg">
-      <Filter>资源文件</Filter>
-    </Image>
-    <Image Include="braynzar.jpg">
-      <Filter>资源文件</Filter>
-    </Image>
-  </ItemGroup>
 </Project>
